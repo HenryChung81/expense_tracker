@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 
+const routes = require('./routes')
 const app = express()
 const PORT = 3007
 
@@ -23,9 +24,7 @@ db.once('open', () => {
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
-app.get('/', (req, res) => {
-  res.render('index')
-})
+app.use(routes)
 
 app.listen(PORT, () => {
   console.log(`Express is running on http://localhost:${PORT}`)
