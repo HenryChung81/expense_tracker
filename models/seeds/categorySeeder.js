@@ -1,8 +1,6 @@
-const express = require('express')
 const mongoose = require('mongoose')
-
-const app = express()
-const PORT = 3007
+const Category = require('../../models/category')
+const categoryList = require('./category.json').category
 
 mongoose.connect('mongodb://localhost/expense', {
   useNewUrlParser: true,
@@ -19,10 +17,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-app.get('/', (req, res) => {
-  res.send('Hello Express!')
-})
-
-app.listen(PORT, () => {
-  console.log(`Express is running on http://localhost:${PORT}`)
+categoryList.forEach((item) => {
+  Category.create(item)
 })

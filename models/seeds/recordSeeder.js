@@ -1,13 +1,16 @@
-const express = require('express')
 const mongoose = require('mongoose')
-
-const app = express()
-const PORT = 3007
-
+const Record = require('../record')
 mongoose.connect('mongodb://localhost/expense', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
+
+const defaultRecord = {
+  name: 'movie',
+  category: 'entertainment',
+  date: Date.now(),
+  amount: 300,
+}
 
 const db = mongoose.connection
 
@@ -19,10 +22,4 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-app.get('/', (req, res) => {
-  res.send('Hello Express!')
-})
-
-app.listen(PORT, () => {
-  console.log(`Express is running on http://localhost:${PORT}`)
-})
+Record.create(defaultRecord)
