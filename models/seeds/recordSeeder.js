@@ -1,9 +1,5 @@
-const mongoose = require('mongoose')
 const Record = require('../record')
-mongoose.connect('mongodb://localhost/expense', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+const db = require('../../config/mongoose')
 
 const defaultRecord = {
   name: 'movie',
@@ -12,14 +8,7 @@ const defaultRecord = {
   amount: 300,
 }
 
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-
 db.once('open', () => {
-  console.log('mongodb connected!')
+  Record.create(defaultRecord)
+  console.log('done!')
 })
-
-Record.create(defaultRecord)
