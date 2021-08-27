@@ -6,6 +6,7 @@ const defaultRecord = {
   category: 'entertainment',
   date: Date.now(),
   amount: 300,
+  brand: '美麗華',
 }
 
 db.once('open', () => {

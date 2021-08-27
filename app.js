@@ -1,6 +1,6 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -10,6 +10,7 @@ const PORT = 3007
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routes)
 
 app.listen(PORT, () => {
