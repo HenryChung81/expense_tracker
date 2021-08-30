@@ -6,7 +6,6 @@ const dayjs = require('dayjs')
 
 router.get('/', async (req, res) => {
   const { category } = req.query
-  console.log('!!!!@@@@@queryCategory', category)
 
   try {
     let records = await Record.aggregate([
@@ -24,7 +23,11 @@ router.get('/', async (req, res) => {
       record.date = dayjs(record.date).format('YYYY-MM-DD')
     })
 
-    res.render('index', { records, categories, category })
+    let totalAmount = records.reduce((accumulator, currentValue) => {
+      return (accumulator += currentValue.amount)
+    }, 0)
+
+    res.render('index', { records, categories, category, totalAmount })
   } catch (error) {
     throw error
   }

@@ -58,12 +58,12 @@
         <div class="">{{ this.brand }}</div>
       </div>
       <div class="col-6 col-md-3 d-flex justify-content-end align-items-center order-1 order-md-2">
-        <form action="/records/{{ this._id }}/edit" method="get">
+        <form action="/record/{{ this._id }}/edit" method="get">
           <button class="btn btn-sm" type="submit">
             <i class="fas fa-edit text-info"></i>
           </button>
         </form>
-        <form action="/records/{{ this._id }}?_method=DELETE" method="POST">
+        <form action="/record/{{ this._id }}?_method=DELETE" method="POST">
           <button class="btn btn-sm ml-2" type="submit" onclick="return confirmDelete();">
             <i class="far fa-trash-alt text-danger"></i>
           </button>
