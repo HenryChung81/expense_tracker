@@ -9,7 +9,13 @@ const defaultRecord = {
   brand: '美麗華',
 }
 
-db.once('open', () => {
-  Record.create(defaultRecord)
-  console.log('done!')
+db.once('open', async () => {
+  try {
+    await Record.create(defaultRecord)
+    console.log('record seed build complete!')
+  } catch (error) {
+    throw error
+  } finally {
+    process.exit()
+  }
 })
