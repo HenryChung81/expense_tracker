@@ -12,7 +12,7 @@
 1. 使用 git 下載本專案
 
 ```
-git clone https://github.com/HenryChung81/expense_tracker.git
+git clone git@github.com:HenryChung81/expense_tracker.git
 ```
 
 2. 移動至本專案資料夾
