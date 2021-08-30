@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const dayjs = require('dayjs')
 
 router.get('/', async (req, res) => {
   const { category } = req.query
@@ -19,6 +20,8 @@ router.get('/', async (req, res) => {
       record.iconName = categories.find(
         (item) => item.name === record.category
       ).className
+
+      record.date = dayjs(record.date).format('YYYY-MM-DD')
     })
 
     res.render('index', { records, categories, category })

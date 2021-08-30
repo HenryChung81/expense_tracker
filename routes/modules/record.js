@@ -17,17 +17,11 @@ router.post('/new', async (req, res) => {
 
   try {
     let newRecord = new Record(postData)
-    console.log('@@@@####postData', postData)
-    console.log('####@@@@newRecord', newRecord)
     await newRecord.save()
     res.redirect('/')
   } catch (error) {
     throw error
   }
-})
-
-router.get('/edit', async (req, res) => {
-  res.render('edit')
 })
 
 module.exports = router
