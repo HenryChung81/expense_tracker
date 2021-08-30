@@ -62,4 +62,16 @@ router.put('/:_id', async (req, res) => {
   }
 })
 
+router.delete('/:_id', async (req, res) => {
+  const record_id = req.params._id
+
+  try {
+    let record = await Record.findOne({ _id: record_id })
+    await record.deleteOne()
+    res.redirect('/')
+  } catch (error) {
+    throw error
+  }
+})
+
 module.exports = router
